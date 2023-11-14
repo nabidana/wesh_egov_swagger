@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BackEnd.User.DAO.UserDAO">
+
+    <resultMap id="usermap" type="BackEnd.User.Domain.User">
+      <result property="id" column="id" />
+      <result property="username" column="username" />
+      <result property="email" column="email" />
+      <result property="provider" column="provider" />
+      <result property="confirmed" column="confirmed" />
+      <result property="blocked" column="blocked" />
+      <result property="createdAt" column="createdAt" />
+      <result property="updatedAd" column="updatedAd" />
+    </resultMap>
+
+    <select id="selectUserByBoard" resultType="user">
+        SELECT *
+        FROM USER
+        WHERE ID = #{id, jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAllUser" parameterType="hashMap" resultMap="usermap">
+      SELECT *
+      FROM USER
+      LIMIT #{pageSize, jdbcType=INTEGER}
+      OFFSET #{page, jdbcType=INTEGER}
+    </select>
+
+    <select id="getAllCount" resultType="Long">
+      SELECT COUNT(*)
+      FROM USER
+    </select>
+</mapper>

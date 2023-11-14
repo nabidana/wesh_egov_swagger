@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BackEnd.Media.DAO.MediaDAO">
+
+    <resultMap id="replymap" type="BackEnd.Media.Domain.Media">
+      <result property="id" column="id" />
+      <result property="name" column="name" />
+      <result property="alternativeText" column="alternativeText" />
+      <result property="caption" column="caption" />
+      <result property="width" column="width" />
+      <result property="height" column="height" />
+      <result property="formats" column="formats" />
+      <result property="hash" column="hash" />
+      <result property="ext" column="ext" />
+      <result property="mime" column="mime" />
+      <result property="size" column="size" />
+      <result property="url" column="url" />
+      <result property="previewUrl" column="previewUrl" />
+      <result property="provider" column="provider" />
+      <result property="provider_metadata" column="provider_metadata" />
+      <result property="createdAt" column="createdAt" />
+      <result property="updatedAt" column="updatedAt" />
+    </resultMap>
+
+    <select id="selectMediaByBoard" resultType="media">
+        SELECT *
+        FROM MEDIA
+        WHERE ID = #{id, jdbcType=INTEGER}
+    </select>
+</mapper>
